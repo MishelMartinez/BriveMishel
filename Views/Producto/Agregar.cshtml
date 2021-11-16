@@ -1,0 +1,49 @@
+﻿@using  BriveExam.Clases;
+@model ProductoCLS
+
+
+@{
+    ViewData["Title"] = "Agregar";
+
+
+}
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <form method="post" asp-action="Agregar" asp-controller="Producto" id="frmMedicamento">
+
+            <div class="form-group">
+
+                <label asp-for="NombreProducto"></label>
+                <input asp-for="NombreProducto" class="form form-control" />
+                <span asp-validation-for="NombreProducto" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Sku"></label>
+                <input asp-for="Sku" class="form form-control" />
+                <span asp-validation-for="Sku" class="text-danger"></span>
+
+            </div>
+
+
+
+
+
+
+            <div class="form-group">
+                <div class="col-12">
+                    <div class="col-12 col-sm-4 offset-sm-4 col-md-2 offset-md-5 col-lg-2 offset-lg-5">
+                        <button type="submit" value="Agregar" class="btn btn-sm bg-gradient-primary mt-lg-3 col-12"><i class="fas fa-search"></i> Agregar</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+
+</div>

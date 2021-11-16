@@ -1,0 +1,57 @@
+﻿@using  BriveExam.Clases;
+@model ProductoCLS
+
+@{
+    ViewData["Title"] = "Editar";
+
+
+}
+
+<h1>Editar Sucursal</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Editar" asp-controller="Producto" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="IdProducto" class="control-label"></label>
+                <input asp-for="IdProducto" class="form-control"  readonly/>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label asp-for="NombreProducto"></label>
+                <input asp-for="NombreProducto" class="form form-control" />
+                <span asp-validation-for="NombreProducto" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Sku"></label>
+                <input asp-for="Sku" class="form form-control" />
+                <span asp-validation-for="Sku" class="text-danger"></span>
+
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-12">
+                    <div class="col-12 col-sm-4 offset-sm-4 col-md-2 offset-md-5 col-lg-4 offset-lg-5">
+                        <button type="submit" value="Guardar" class="btn btn-info"><i class="fas fa-search"></i> Guardar</button> <br />
+
+                        <a class="btn btn-danger" asp-controller="Producto" asp-action="Index">Regresar</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+

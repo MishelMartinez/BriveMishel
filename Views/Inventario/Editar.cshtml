@@ -1,0 +1,64 @@
+﻿@using  BriveExam.Clases;
+@model InventarioCLS
+
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<SelectListItem> listBranch = ViewBag.listBranch;
+    List<SelectListItem> listProducts = ViewBag.listProducts;
+}
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <form method="post" asp-action="Editar" asp-controller="Inventario" id="frmMedicamento">
+
+            <div class="form-group">
+                <label asp-for="IdInventario" class="control-label"></label>
+                <input asp-for="IdInventario" class="form-control" readonly />
+
+            </div
+>
+            <div class="form-group">
+                <!-- drop-->
+                <label asp-for="IdSucursal"></label>
+                <select asp-for="IdSucursal" class="form form-control"
+                        asp-items="@listBranch"></select>
+                <span asp-validation-for="IdSucursal" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <!-- drop-->
+                <label asp-for="IdProducto"></label>
+                <select asp-for="IdProducto" class="form form-control"
+                        asp-items="@listProducts"></select>
+                <span asp-validation-for="IdProducto" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Stock"></label>
+                <input asp-for="Stock" class="form form-control" />
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="col-12">
+                    <div class="col-12 col-sm-4 offset-sm-4 col-md-2 offset-md-5 col-lg-2 offset-lg-5">
+                        <button type="submit" value="Editar" class="btn btn-info"><i class="fas fa-search"></i> Guardar</button>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="col-12 col-sm-4 offset-sm-4 col-md-2 offset-md-5 col-lg-2 offset-lg-5">
+                        <a class="btn btn-danger" asp-controller="Inventario" asp-action="Index">Regresar</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>

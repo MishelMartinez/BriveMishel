@@ -1,0 +1,74 @@
+﻿@using  BriveExam.Clases;
+@model IEnumerable<BriveExam.Clases.ProductoCLS>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Productos</h3>
+
+<p>
+    <a class="btn btn-primary" asp-action="Agregar">Agregar</a>
+</p>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.NombreProducto)
+            </th>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.Sku)
+            </th>
+
+            <th>
+                Operaciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ProductoCLS item in Model)
+        {
+            <tr>
+
+                <td>
+                    @item.NombreProducto
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sku)
+                </td>
+               
+                <td>
+
+
+                    <i class="fa fa-trash btn btn-danger" aria-hidden="true" onclick="DeleteSucursal(@item.IdProducto)">Eliminar</i>
+
+
+                    <a class="fa fa-edit btn btn-primary" asp-route-id="@item.IdProducto" asp-controller="Producto" asp-action="Editar" aria-hidden="true">Editar</a>
+
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form class="" id="formSend" asp-action="Borrar" asp-controller="Producto" method="post">
+
+    <input type="hidden" id="txtId" name="Id" />
+</form>
+
+
+<script>
+
+    function DeleteSucursal(value) {
+
+        document.getElementById("txtId").value = value;
+        var frm = document.getElementById("formSend");
+        frm.submit();
+
+
+    }
+</script>

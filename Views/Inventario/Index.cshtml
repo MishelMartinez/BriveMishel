@@ -1,0 +1,97 @@
+﻿@using  BriveExam.Clases;
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<InventarioCLS> listTable = ViewBag.listTable;
+    List<SelectListItem> listBranch = ViewBag.listBranch;
+}
+<h3>Inventario</h3>
+
+<p>
+    <a class="btn btn-primary" asp-action="Agregar">Agregar</a>
+</p>
+
+<form id="formGender" asp-controller="Inventario" asp-action="Index" method="post" class="mb-2" style="display:grid;grid-template-columns:1fr 2fr 1fr 1fr ">
+    
+                        <label for="selectCondicion">SUCURSAL</label>
+                        @Html.DropDownList("selectSucursal", listBranch, new { @class = "form form-control" })
+
+                   
+<input type="submit" value="Buscar" class="btn btn-primary" />
+          
+</form>
+
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+
+                            <th>
+                                PRODUCTO
+                            </th>
+
+                            <th>
+                               STOCK
+                            </th>
+
+                            <th>
+                               UBICACIÓN DE SUCURSAL
+                            </th>
+                            <th>
+                                Operaciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (InventarioCLS item in listTable)
+                        {
+                            <tr>
+
+                                <td>
+                                    @item.NombreProducto
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Stock)
+                                </td>
+                                <td>
+                                    @item.NombreSucursal
+                                </td>
+                                <td>
+
+
+                                    <i class="fa fa-trash btn btn-danger" aria-hidden="true" onclick="DeleteSucursal(@item.IdInventario)">Eliminar</i>
+
+
+                                    <a class="fa fa-edit btn btn-primary" asp-route-id="@item.IdInventario" asp-controller="Inventario" asp-action="Editar" aria-hidden="true">Editar</a>
+
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <form class="" id="formSend" asp-action="Borrar" asp-controller="Inventario" method="post">
+
+                    <input type="hidden" id="txtId" name="Id" />
+                </form>
+
+
+                <script>
+
+                    function DeleteSucursal(value) {
+
+                        document.getElementById("txtId").value = value;
+                        var frm = document.getElementById("formSend");
+                        frm.submit();
+
+
+                    }
+
+                    function Limpiar() {
+
+                        document.getElementById("Input-inventario").value = "";
+                        document.getElementById("formInventario").submit();
+                    }
+                </script>
